@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import org.w3c.dom.Text
 import site.dchan.www.hello_kotlin.R
 import site.dchan.www.hello_kotlin.bindView
@@ -40,8 +41,6 @@ class ArticleView : FrameLayout {
     fun setArticle(article: Article) {
         titleTextView.text = article.title
         userNameTextView.text = article.user.name
-
-        // TODO プロファイル画像をセットする
-        profileImageView.setBackgroundColor(Color.RED)
+        Glide.with(context).load(article.user.profileImageUrl).into(profileImageView)
     }
 }
