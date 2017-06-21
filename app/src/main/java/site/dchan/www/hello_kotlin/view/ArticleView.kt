@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import org.w3c.dom.Text
 import site.dchan.www.hello_kotlin.R
+import site.dchan.www.hello_kotlin.bindView
 import site.dchan.www.hello_kotlin.model.Article
 
 class ArticleView : FrameLayout {
@@ -26,24 +27,21 @@ class ArticleView : FrameLayout {
                   defStyleAttr: Int,
                   defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes)
 
-    var profileImageView: ImageView? = null
+    val profileImageView: ImageView by bindView(R.id.profile_image_view)
 
-    var titleTextView: TextView? = null
+    val titleTextView: TextView by bindView(R.id.title_text_view)
 
-    var userNameTextView: TextView? = null
+    val userNameTextView: TextView by bindView(R.id.user_name_text_view)
 
     init {
         LayoutInflater.from(context).inflate(R.layout.view_article, this)
-        profileImageView = findViewById(R.id.profile_image_view) as ImageView
-        titleTextView = findViewById(R.id.title_text_view) as TextView
-        userNameTextView = findViewById(R.id.user_name_text_view) as TextView
     }
 
     fun setArticle(article: Article) {
-        titleTextView?.text = article.title
-        userNameTextView?.text = article.user.name
+        titleTextView.text = article.title
+        userNameTextView.text = article.user.name
 
         // TODO プロファイル画像をセットする
-        profileImageView?.setBackgroundColor(Color.RED)
+        profileImageView.setBackgroundColor(Color.RED)
     }
 }
